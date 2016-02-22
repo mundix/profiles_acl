@@ -19,6 +19,7 @@ class ProfilesController < BaseController
     if @user.save
       redirect_to profile_path, notice: "Usuario Creado"
     else
+      flash[:error] = "Hubo un error al crear este usuario"
       render "new"
     end
   end
