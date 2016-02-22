@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar, styles: { medium: "700x500#", small: "350x250>" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+  def full_name
+    "#{self.first} #{self.last}"
+  end
 end

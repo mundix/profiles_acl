@@ -15,11 +15,13 @@ class ProfilesController < BaseController
 
   def create
     @user = User.new(user_params)
+    generated_password = Devise.friendly_token.first(8)
+    @user.password = generated_password
     # @user.user = current_user
     if @user.save
       redirect_to profile_path, notice: "Usuario Creado"
     else
-      flash[:error] = "Hubo un error al crear este usuario"
+      flash[:error] = "Hubo un error al crear este usuario #{@user.errors.full_messages}"
       render "new"
     end
   end
@@ -40,7 +42,7 @@ class ProfilesController < BaseController
   end
 
   def user_params
-    params.require(:user).permit(:email,:password,:password_digest,:first,:last,:gender,:birth,:avatar)
+    params.require(:user).permit(:first,:last,:email,:gender,:birth)
   end
 
 end

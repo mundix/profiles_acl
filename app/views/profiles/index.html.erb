@@ -1,10 +1,23 @@
 <div class="content">
   <div class="row">
+    <h2>Lista de usuarios</h2>
     <table>
         <% @users.each do |user|  %>
         <tr>
           <td>
+            <%= user.full_name %>
+          </td>
+          <td>
             <%= user.email %>
+          </td>
+          <td>
+            <%= user.gender %>
+          </td>
+          <td>
+            <%= link_to "Editar",edit_profile_path(user), class: "data" %>
+          </td>
+          <td>
+            <%= link_to "Borrar",profiles_path(user), method: :delete, data: {confirm: "Esta seguro ?"}, class: "data" %>
           </td>
         </tr>
         <% end %>
