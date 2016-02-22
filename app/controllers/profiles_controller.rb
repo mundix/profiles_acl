@@ -15,9 +15,9 @@ class ProfilesController < BaseController
 
   def create
     @user = User.new(user_params)
-    @user.user = current_user
-    if @user.save?
-      redirect_to profile_path
+    # @user.user = current_user
+    if @user.save
+      redirect_to profile_path, notice: "Usuario Creado"
     else
       render "new"
     end
@@ -39,7 +39,7 @@ class ProfilesController < BaseController
   end
 
   def user_params
-    params.require(:user).permit(:email,:password,:password_digest,:first,:last,:gender,:birth,:user)
+    params.require(:user).permit(:email,:password,:password_digest,:first,:last,:gender,:birth)
   end
 
 end

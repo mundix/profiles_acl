@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resources :roles
   resources :profiles
 
+  # post "/profiles" => "profiles#create"
+
   root "home#index"
 end
