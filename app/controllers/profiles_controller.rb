@@ -1,4 +1,4 @@
-class ProfilesController < ApplicationController
+class ProfilesController < BaseController
   before_action :find_profile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.user = current_user
-    if @user.save
+    if @user.save?
       redirect_to profile_path
     else
       render "new"
