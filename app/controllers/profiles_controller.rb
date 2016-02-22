@@ -39,7 +39,7 @@ class ProfilesController < BaseController
   end
 
   def user_params
-    params.require(:user).permit(:email,:password,:password_digest,:first,:last,:gender,:birth)
+    params.require(:user).permit(:email,:password,:password_digest,:first,:last,:gender,:birth,:avatar)
   end
 
 end
